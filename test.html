@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICMATT 2026 - International Conference on Maritime Technology</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #002147;
+            --gold: #d4af37;
+            --white: #ffffff;
+            --light-navy: #003366;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--navy);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--navy);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .logo {
+            color: var(--gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(0,33,71,0.95), rgba(0,51,102,0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23002147" width="1200" height="600"/><path fill="%23003366" opacity="0.3" d="M0,300 Q300,200 600,300 T1200,300 L1200,600 L0,600 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 5%;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .hero .theme {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero .details {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .countdown-item {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            min-width: 100px;
+            animation: pulse 2s infinite;
+        }
+
+        .countdown-item .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .countdown-item .label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--navy);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
+        .qr-hint {
+            margin-top: 2rem;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s;
+        }
+
+        .about-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Program Section */
+        .program {
+            padding: 5rem 5%;
+            background: #f8f9fa;
+        }
+
+        .program h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--navy);
+        }
+
+        .program-day {
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .program-day h3 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .program-item {
+            display: flex;
+            gap: 2rem;
+            padding: 1.5rem;
+            border-left: 3px solid var(--gold);
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+        }
+
+        .program-item:hover {
+            background: #f8f9fa;
+            transform: translateX(10px);
+        }
+
+        .program-time {
+            font-weight: 600;
+            color: var(--navy);
+            min-width: 100px;
+        }
+
+        .program-details h4 {
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .program-details p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Sub-themes Grid */
+        .themes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+
+        .theme-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-top: 4px solid var(--gold);
+        }
+
+        .theme-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .theme-card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            animation: slideUp 0.4s;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .modal h2 {
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 5%;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--gold);
+        }
+
+        footer {
+            background: var(--light-navy);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .countdown { flex-wrap: wrap; }
+            nav ul { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="background-color: #ffffff; color: #002147;">
+        <div class="logo"><img src="images/gma_logo.jpg" alt="logo"  style="width: 3em;"></div>
+        <ul>
+            <li ><a href="#home" style="color: #002147;">Home</a></li>
+            <li><a href="#program">Program</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>ICMATT 2026</h1>
+            <div class="theme">International Conference on Maritime & Advanced Technology</div>
+            <div class="details">
+                📅 March 15-16, 2026 | 📍 Global Maritime Academy, Port Harcourt
+            </div>
+            
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <div class="number" id="days">000</div>
+                    <div class="label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="hours">00</div>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="minutes">00</div>
+                    <div class="label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="number" id="seconds">00</div>
+                    <div class="label">Seconds</div>
+                </div>
+            </div>
+
+            <div>
+                <a href="#" class="btn" onclick="openModal(); return false;">Reserve Your Seat</a>
+                <a href="#program" class="btn btn-outline">View Program</a>
+            </div>
+
+            <div class="qr-hint">📱 Scan QR code on-site for full program details</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-content">
+            <h2>About ICMATT 2026</h2>
+            <p>The International Conference on Maritime & Advanced Technology brings together leading experts, researchers, and industry professionals to explore cutting-edge innovations shaping the future of maritime operations, sustainability, and technology integration.</p>
+            <p>Hosted by Global Maritime Academy, this premier event features keynote presentations, technical sessions, and networking opportunities designed to advance knowledge and foster collaboration across the maritime sector.</p>
+            
+            <h2 style="margin-top: 3rem;">Conference Themes</h2>
+            <div class="themes-grid">
+                <div class="theme-card">
+                    <h3>🌊 Sustainable Maritime Operations</h3>
+                    <p>Green shipping technologies, emission reduction strategies, and environmental compliance</p>
+                </div>
+                <div class="theme-card">
+                    <h3>🚢 Digital Transformation</h3>
+                    <p>AI, IoT, blockchain in maritime logistics and smart port operations</p>
+                </div>
+                <div class="theme-card">
+                    <h3>⚓ Safety & Security</h3>
+                    <p>Cybersecurity, piracy prevention, and advanced safety protocols</p>
+                </div>
+                <div class="theme-card">
+                    <h3>🔧 Maritime Engineering</h3>
+                    <p>Ship design innovations, propulsion systems, and maintenance technologies</p>
+                </div>
+                <div class="theme-card">
+                    <h3>📊 Maritime Economics</h3>
+                    <p>Trade policies, supply chain optimization, and market trends</p>
+                </div>
+                <div class="theme-card">
+                    <h3>🎓 Training & Development</h3>
+                    <p>Crew competency, simulation technologies, and workforce development</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Section -->
+    <section class="program" id="program">
+        <h2>Conference Program</h2>
+        
+        <div class="program-day">
+            <h3>Day 1 - March 15, 2026</h3>
+            <div class="program-item">
+                <div class="program-time">08:00 AM</div>
+                <div class="program-details">
+                    <h4>Registration & Welcome Coffee</h4>
+                    <p>Network with fellow attendees</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">09:00 AM</div>
+                <div class="program-details">
+                    <h4>Opening Ceremony</h4>
+                    <p>Welcome address by conference chair & keynote presentation</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">10:30 AM</div>
+                <div class="program-details">
+                    <h4>Technical Session 1: Sustainable Maritime Operations</h4>
+                    <p>Panel discussions on green technologies and environmental compliance</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">12:30 PM</div>
+                <div class="program-details">
+                    <h4>Lunch Break & Networking</h4>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">02:00 PM</div>
+                <div class="program-details">
+                    <h4>Technical Session 2: Digital Transformation</h4>
+                    <p>AI, IoT, and blockchain applications in maritime industry</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">04:00 PM</div>
+                <div class="program-details">
+                    <h4>Exhibition & Product Showcases</h4>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">06:00 PM</div>
+                <div class="program-details">
+                    <h4>Welcome Dinner</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="program-day">
+            <h3>Day 2 - March 16, 2026</h3>
+            <div class="program-item">
+                <div class="program-time">09:00 AM</div>
+                <div class="program-details">
+                    <h4>Technical Session 3: Safety & Security</h4>
+                    <p>Cybersecurity and risk management in maritime operations</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">11:00 AM</div>
+                <div class="program-details">
+                    <h4>Technical Session 4: Maritime Engineering Innovations</h4>
+                    <p>Advanced propulsion systems and ship design</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">01:00 PM</div>
+                <div class="program-details">
+                    <h4>Lunch & Networking</h4>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">02:30 PM</div>
+                <div class="program-details">
+                    <h4>Industry Roundtable Discussion</h4>
+                    <p>Future of maritime trade and workforce development</p>
+                </div>
+            </div>
+            <div class="program-item">
+                <div class="program-time">04:00 PM</div>
+                <div class="program-details">
+                    <h4>Closing Ceremony & Awards</h4>
+                    <p>Best paper presentations and closing remarks</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="#" class="btn">Download Full Program (PDF)</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-links">
+            <a href="https://wa.me/2348000000000" class="contact-link" target="_blank">
+                <span>📱</span> WhatsApp
+            </a>
+            <a href="mailto:info@icmatt2026.com" class="contact-link">
+                <span>📧</span> info@icmatt2026.com
+            </a>
+            <a href="tel:+2348000000000" class="contact-link">
+                <span>📞</span> +234 800 000 0000
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ICMATT - Global Maritime Academy. All rights reserved.</p>
+    </footer>
+
+    <!-- Reservation Modal -->
+    <div class="modal" id="reservationModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="success-message" id="successMessage">
+                ✓ Registration successful! We'll contact you soon.
+            </div>
+            <h2>Reserve Your Seat</h2>
+            <form id="reservationForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" required placeholder="+234 800 000 0000">
+                </div>
+                <div class="form-group">
+                    <label>Institution/Organization</label>
+                    <input type="text" placeholder="Your organization">
+                </div>
+                <div class="form-group">
+                    <label>Attendance Type *</label>
+                    <select required>
+                        <option value="">Select...</option>
+                        <option value="physical">Physical Attendance</option>
+                        <option value="virtual">Virtual Attendance</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        const eventDate = new Date('2026-03-15T09:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(3, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-content').forEach(el => observer.observe(el));
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('reservationModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('reservationModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            const successMsg = document.getElementById('successMessage');
+            successMsg.style.display = 'block';
+            
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+                closeModal();
+                e.target.reset();
+            }, 3000);
+            
+            return false;
+        }
+
+        // Auto-popup modal on scroll
+        let modalShown = false;
+        window.addEventListener('scroll', () => {
+            if (!modalShown && window.scrollY > document.body.scrollHeight * 0.5) {
+                openModal();
+                modalShown = true;
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

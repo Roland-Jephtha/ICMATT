@@ -1,0 +1,41 @@
+USE [MirdexHotels]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Sp_FillExpense]    Script Date: 10/16/2025 9:02:52 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+CREATE  PROCEDURE [dbo].[Sp_FillExpense] (@ExpenseDate Varchar (50), @ExpenseDate2 Varchar (50), @ExpenseType Varchar (50))
+   
+   
+AS
+BEGIN
+
+SELECT EX.*, PA.id AccountHeadID, PA.Description [PaidToName],CH.id vendorID, CH.[Name] vendorName, CB.id CreatedByID, CB.FullName CreatedBy ,
+ PA2.id AccountHeadCashBankID, PA2.Description CashBankName
+FROM Expenses EX
+INNER JOIN AccountHeads PA ON EX.[Paid To]=PA.id
+INNER JOIN AccountHeads PA2 ON EX.Cashbank=PA2.id
+INNER JOIN vendors CH ON EX.vendor=CH.id
+INNER JOIN Staff.Staffs CB ON EX.[Created By]=CB.id
+
+where EX.[Expense Date] >= ISNULL(@ExpenseDate,EX.[Expense Date]) and  EX.[Expense Date]  <= ISNULL(@ExpenseDate2,EX.[Expense Date])and  EX.ExpenseType = ISNULL(@ExpenseType,EX.ExpenseType)
+
+end
+
+
+
+
+
+GO
+
+
