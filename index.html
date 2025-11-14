@@ -20,6 +20,7 @@
             --dark: #001a33;
             --light: #f0f8ff;
             --white: #ffffff;
+            --whatsapp: #25D366;
         }
 
         body {
@@ -77,7 +78,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
         }
 
@@ -87,7 +88,8 @@
             font-weight: 600;
             position: relative;
             transition: all 0.3s;
-            padding: 0.5rem 0;
+            padding: 0.5rem 0.8rem;
+            white-space: nowrap;
         }
 
         .nav-links a::after {
@@ -110,6 +112,101 @@
             color: var(--secondary);
         }
 
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--white);
+            z-index: 999;
+            padding: 100px 2rem 2rem;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: block;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .mobile-nav-links a:hover {
+            background: var(--light);
+            color: var(--secondary);
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Hero Section with Ship Background */
         .hero {
             min-height: 100vh;
@@ -119,8 +216,7 @@
             text-align: center;
             padding: 120px 5% 80px;
             position: relative;
-            /* background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 26, 51, 0.9)),  */
-            background: linear-gradient(rgba(45, 45, 46, 0.85), rgba(2, 50, 95, 0.9)), 
+            background: linear-gradient(rgba(93, 95, 97, 0.85), rgba(18, 23, 27, 0.9)), 
                         url('images/hydro.jpg') center/cover;
             clip-path: ellipse(100% 100% at 50% 0%);
         }
@@ -300,6 +396,7 @@
             gap: 0.5rem;
         }
 
+        /* Bootstrap-style Button Colors */
         .btn-primary {
             background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             color: var(--white);
@@ -309,6 +406,18 @@
         .btn-primary:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0, 102, 204, 0.6);
+        }
+
+        .btn-primary-outline {
+            background: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+
+        .btn-primary-outline:hover {
+            background: var(--secondary);
+            color: var(--white);
+            transform: translateY(-5px);
         }
 
         .btn-secondary {
@@ -321,6 +430,253 @@
             background: transparent;
             color: var(--white);
             transform: translateY(-5px);
+        }
+
+        .btn-secondary-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(40, 167, 69, 0.6);
+        }
+
+        .btn-success-outline {
+            background: transparent;
+            color: #28a745;
+            border: 2px solid #28a745;
+        }
+
+        .btn-success-outline:hover {
+            background: #28a745;
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            color: var(--dark);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-warning:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 193, 7, 0.6);
+        }
+
+        .btn-warning-outline {
+            background: transparent;
+            color: #ffc107;
+            border: 2px solid #ffc107;
+        }
+
+        .btn-warning-outline:hover {
+            background: #ffc107;
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(220, 53, 69, 0.4);
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(220, 53, 69, 0.6);
+        }
+
+        .btn-danger-outline {
+            background: transparent;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        .btn-danger-outline:hover {
+            background: #dc3545;
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .btn-info {
+            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(23, 162, 184, 0.4);
+        }
+
+        .btn-info:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(23, 162, 184, 0.6);
+        }
+
+        .btn-info-outline {
+            background: transparent;
+            color: #17a2b8;
+            border: 2px solid #17a2b8;
+        }
+
+        .btn-info-outline:hover {
+            background: #17a2b8;
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .btn-light {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--dark);
+            box-shadow: 0 10px 30px rgba(248, 249, 250, 0.4);
+        }
+
+        .btn-light:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(248, 249, 250, 0.6);
+        }
+
+        .btn-light-outline {
+            background: transparent;
+            color: #f8f9fa;
+            border: 2px solid #f8f9fa;
+        }
+
+        .btn-light-outline:hover {
+            background: #f8f9fa;
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .btn-dark {
+            background: linear-gradient(135deg, #343a40 0%, #23272b 100%);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(52, 58, 64, 0.4);
+        }
+
+        .btn-dark:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(52, 58, 64, 0.6);
+        }
+
+        .btn-dark-outline {
+            background: transparent;
+            color: #343a40;
+            border: 2px solid #343a40;
+        }
+
+        .btn-dark-outline:hover {
+            background: #343a40;
+            color: var(--white);
+            transform: translateY(-5px);
+        }
+
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Scroll Navigation Icons */
+        .scroll-nav {
+            position: fixed;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .scroll-nav.top {
+            bottom: 100px;
+        }
+
+        .scroll-nav.bottom {
+            bottom: 50px;
+        }
+
+        .scroll-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8);
+        }
+
+        .scroll-btn.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        .scroll-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 102, 204, 0.5);
+            background: var(--accent);
+        }
+
+        /* Smooth scrolling for the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Button Demo Section */
+        .button-demo {
+            padding: 80px 5%;
+            background: var(--light);
+            text-align: center;
+        }
+
+        .button-demo h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .button-demo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .button-demo-item .btn {
+            min-width: 180px;
         }
 
         /* Curved Section Divider */
@@ -653,6 +1009,7 @@
             font-weight: 600;
         }
 
+        /* Payment Details Section */
         .payment-box {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--white);
@@ -661,22 +1018,96 @@
             max-width: 600px;
             margin: 3rem auto;
             box-shadow: 0 20px 60px rgba(0, 51, 102, 0.3);
+            position: relative;
         }
 
         .payment-box h3 {
             color: var(--gold);
             margin-bottom: 2rem;
             font-size: 2rem;
+            text-align: center;
         }
 
-        .payment-box p {
-            margin: 1.2rem 0;
+        .payment-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .payment-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .payment-label {
+            font-weight: 600;
             font-size: 1.1rem;
-            line-height: 1.8;
         }
 
-        .payment-box strong {
-            color: var(--gold);
+        .payment-value {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .payment-text {
+            font-size: 1.1rem;
+        }
+
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .copy-btn.copied {
+            background: var(--gold);
+            color: var(--primary);
+        }
+
+        .whatsapp-btn {
+            background: var(--whatsapp);
+            color: var(--white);
+            border: none;
+            padding: 1.2rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 2rem auto 0;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
         }
 
         /* Footer */
@@ -745,15 +1176,109 @@
             margin: 0 auto;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero .subtitle { font-size: 1.3rem; }
-            .nav-links { display: none; }
-            .section-title { font-size: 2rem; }
-            .themes-grid, .program-preview { grid-template-columns: 1fr; }
-            .event-details { flex-direction: column; gap: 1rem; }
-            .program-preview { grid-template-columns: 1fr; }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 30px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            transform: translateY(50px);
+            transition: transform 0.4s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--secondary);
+            transform: rotate(90deg);
+        }
+
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Scroll Animations */
@@ -773,9 +1298,62 @@
             animation: fadeIn 0.6s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .nav-links a {
+                padding: 0.5rem 0.6rem;
+                font-size: 0.95rem;
+            }
+            
+            .hero h1 { font-size: 3.5rem; }
+            .hero .subtitle { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subtitle { font-size: 1.3rem; }
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .section-title { font-size: 2rem; }
+            .themes-grid, .program-preview { grid-template-columns: 1fr; }
+            .event-details { flex-direction: column; gap: 1rem; }
+            .program-preview { grid-template-columns: 1fr; }
+            .modal-content { padding: 2rem; }
+            .payment-box { padding: 2rem; }
+            .payment-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .payment-value {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .scroll-nav {
+                right: 20px;
+            }
+            
+            .scroll-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .scroll-nav.top {
+                bottom: 90px;
+            }
+            
+            .scroll-nav.bottom {
+                bottom: 40px;
+            }
+            
+            .button-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
         }
     </style>
 </head>
@@ -783,7 +1361,7 @@
     <nav>
         <div class="nav-container">
             <div class="logo">
-            <img src="images/gma_logo.jpg" alt="logo"  style="width: 2.7em;">
+                <img src="images/gma_logo.jpg" alt="logo" style="width: 2.7em;">
                 <span>ICMATT 2026</span>
             </div>
             <ul class="nav-links">
@@ -794,13 +1372,85 @@
                 <li><a href="#" onclick="showPage('day2'); return false;">Day 2</a></li>
                 <li><a href="#hotels">Hotels</a></li>
                 <li><a href="#register">Register</a></li>
+                <li><a href="#" onclick="openModal(); return false;" class="btn btn-primary" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">Reserve Seat</a></li>
             </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav-overlay" onclick="toggleMobileMenu()"></div>
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="#home" onclick="showPage('home'); toggleMobileMenu();">Home</a></li>
+            <li><a href="#themes" onclick="toggleMobileMenu();">Themes</a></li>
+            <li><a href="#program" onclick="toggleMobileMenu();">Program</a></li>
+            <li><a href="#" onclick="showPage('day1'); toggleMobileMenu(); return false;">Day 1</a></li>
+            <li><a href="#" onclick="showPage('day2'); toggleMobileMenu(); return false;">Day 2</a></li>
+            <li><a href="#hotels" onclick="toggleMobileMenu();">Hotels</a></li>
+            <li><a href="#register" onclick="toggleMobileMenu();">Register</a></li>
+            <li><a href="#" onclick="openModal(); toggleMobileMenu(); return false;" class="btn btn-primary" style="display: block; text-align: center; margin-top: 1rem;">Reserve Seat</a></li>
+        </ul>
+    </div>
+
+    <!-- Scroll Navigation -->
+    <div class="scroll-nav top">
+        <button class="scroll-btn" id="scrollToTop" title="Scroll to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+    
+    <div class="scroll-nav bottom">
+        <button class="scroll-btn" id="scrollToBottom" title="Scroll to bottom">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- Reservation Modal -->
+    <div class="modal" id="reservationModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="success-message" id="successMessage">
+                ✓ Registration successful! We'll contact you soon.
+            </div>
+            <h2>Reserve Your Seat</h2>
+            <form id="reservationForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" required placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" required placeholder="+234 800 000 0000">
+                </div>
+                <div class="form-group">
+                    <label>Institution/Organization</label>
+                    <input type="text" placeholder="Your organization">
+                </div>
+                <div class="form-group">
+                    <label>Attendance Type *</label>
+                    <select required>
+                        <option value="">Select...</option>
+                        <option value="physical">Physical Attendance</option>
+                        <option value="virtual">Virtual Attendance</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+
     <div id="homePage" class="page-content">
         <!-- Hero Section -->
-        <section class="hero" id="home">
+        <section class="hero" id="home" style="margin-bottom: -5em;">
             <div class="hero-content">
                 <h1>ICMATT 2026</h1>
                 <div class="subtitle">International Conference on Maritime Trade and Transport</div>
@@ -840,16 +1490,72 @@
                     </div>
                 </div>
 
+              
                 <div class="cta-buttons">
-                    <a href="#register" class="btn btn-primary">
-                        <span><i class="fas fa-user-plus"></i> Register Now</span>
+                    <a href="#" onclick="openModal(); return false;" class="btn btn-primary">
+                        <span><i class="fas fa-user-plus"></i> Reserve Your Seat</span>
                     </a>
-                    <a href="#program" class="btn btn-secondary">
+                    <a href="#program" class="btn btn-info-outline">
                         <span><i class="far fa-calendar"></i> View Program</span>
                     </a>
                 </div>
             </div>
         </section>
+
+        <!-- Button Demo Section -->
+
+<!--         
+        <section class="button-demo">
+            <h2 class="section-title reveal">Button Styles</h2>
+            <p class="section-subtitle reveal">All available button styles following Bootstrap color scheme</p>
+            
+            <div class="button-grid">
+                <div class="button-demo-item">
+                    <button class="btn btn-primary">Primary</button>
+                    <button class="btn btn-primary-outline">Primary Outline</button>
+                </div>
+                <div class="button-demo-item">
+                    <button class="btn btn-secondary">Secondary</button>
+                    <button class="btn btn-secondary-outline">Secondary Outline</button>
+                </div>
+                <div class="button-demo-item">
+                    <button class="btn btn-success">Success</button>
+                    <button class="btn btn-success-outline">Success Outline</button>
+                </div>
+                <div class="button-demo-item">
+                    <button class="btn btn-warning">Warning</button>
+                    <button class="btn btn-warning-outline">Warning Outline</button>
+                </div>
+                <div class="button-demo-item">
+                    <button class="btn btn-danger">Danger</button>
+                    <button class="btn btn-danger-outline">Danger Outline</button>
+                </div>
+                <div class="button-demo-item">
+                    <button class="btn btn-info">Info</button>
+                    <button class="btn btn-info-outline">Info Outline</button>
+                </div>
+                <div class="button-demo-item">
+                    <button class="btn btn-light">Light</button>
+                    <button class="btn btn-light-outline">Light Outline</button>
+                </div>
+                <div class="button-demo-item">
+                    <button class="btn btn-dark">Dark</button>
+                    <button class="btn btn-dark-outline">Dark Outline</button>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+
+ -->
+
+
+
+        
 
         <!-- Program Preview Section -->
         <section class="section" id="program">
@@ -1191,17 +1897,57 @@
 
             <div class="payment-box reveal">
                 <h3><i class="fas fa-university"></i> Payment Details</h3>
-                <p><strong>Account Name:</strong> Global Maritime Academy</p>
-                <p><strong>Account Number:</strong> 1006069497</p>
-                <p><strong>Bank:</strong> Keystone Bank</p>
-                <p><strong>Send Evidence to:</strong> technical.icmtt2026@gma.edu.ng</p>
+                <div class="payment-details">
+                    <div class="payment-item">
+                        <span class="payment-label">Account Name:</span>
+                        <div class="payment-value">
+                            <span class="payment-text">Global Maritime Academy</span>
+                            <button class="copy-btn" data-text="Global Maritime Academy">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payment-item">
+                        <span class="payment-label">Account Number:</span>
+                        <div class="payment-value">
+                            <span class="payment-text">1006069497</span>
+                            <button class="copy-btn" data-text="1006069497">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payment-item">
+                        <span class="payment-label">Bank:</span>
+                        <div class="payment-value">
+                            <span class="payment-text">Keystone Bank</span>
+                            <button class="copy-btn" data-text="Keystone Bank">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payment-item">
+                        <span class="payment-label">Send Evidence to:</span>
+                        <div class="payment-value">
+                            <span class="payment-text">technical.icmtt2026@gma.edu.ng</span>
+                            <button class="copy-btn" data-text="technical.icmtt2026@gma.edu.ng">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button class="whatsapp-btn" onclick="sendPaymentProof()">
+                    <i class="fab fa-whatsapp"></i> I Have Paid - Send Proof
+                </button>
             </div>
 
             <div class="cta-buttons reveal">
-                <a href="mailto:icmtt.inquiry@gma.edu.ng" class="btn btn-primary">
+                <a href="#" onclick="openModal(); return false;" class="btn btn-primary">
+                    <span><i class="fas fa-user-plus"></i> Reserve Your Seat</span>
+                </a>
+                <a href="mailto:icmtt.inquiry@gma.edu.ng" class="btn btn-success-outline">
                     <span><i class="fas fa-envelope"></i> Contact for Registration</span>
                 </a>
-                <a href="tel:+2348062540176" class="btn btn-secondary">
+                <a href="tel:+2348062540176" class="btn btn-info-outline">
                     <span><i class="fas fa-phone"></i> Call Us</span>
                 </a>
             </div>
@@ -1212,7 +1958,7 @@
             <div class="footer-content">
                 <div class="footer-grid">
                     <div class="footer-section">
-                        <h3><img src="images/gma_logo.jpg" alt="logo"  style="width: 2.7em;"> ICMATT 2026</h3>
+                        <h3><img src="images/gma_logo.jpg" alt="logo" style="width: 2em;"> ICMATT 2026</h3>
                         <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
                             International Conference on Maritime Trade and Transport organized by Global Maritime Academy, Nigeria
                         </p>
@@ -1390,6 +2136,9 @@
                     <a href="#" onclick="showPage('day2'); return false;" class="btn btn-primary">
                         <span>View Day 2 <i class="fas fa-arrow-right"></i></span>
                     </a>
+                    <a href="#" onclick="openModal(); return false;" class="btn btn-success-outline">
+                        <span><i class="fas fa-user-plus"></i> Reserve Seat</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1551,6 +2300,9 @@
                     <a href="#" onclick="showPage('home'); return false;" class="btn btn-primary">
                         <span>Back to Home <i class="fas fa-home"></i></span>
                     </a>
+                    <a href="#" onclick="openModal(); return false;" class="btn btn-success-outline">
+                        <span><i class="fas fa-user-plus"></i> Reserve Seat</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1572,6 +2324,87 @@
             }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            toggleScrollButtons();
+        }
+
+        // Mobile Navigation
+        function toggleMobileMenu() {
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const mobileOverlay = document.querySelector('.mobile-nav-overlay');
+            
+            mobileMenuBtn.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            
+            // Prevent body scroll when mobile menu is open
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Modal Functions
+        function openModal() {
+            const modal = document.getElementById('reservationModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('reservationModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            
+            // Reset form
+            document.getElementById('reservationForm').reset();
+            
+            // Close modal after 3 seconds
+            setTimeout(() => {
+                closeModal();
+                successMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('reservationModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Copy to clipboard functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const text = this.getAttribute('data-text');
+                navigator.clipboard.writeText(text).then(() => {
+                    // Show copied state
+                    this.classList.add('copied');
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        this.classList.remove('copied');
+                        this.innerHTML = '<i class="far fa-copy"></i>';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+        });
+
+        // WhatsApp payment proof function
+        function sendPaymentProof() {
+            const phoneNumber = "2348062540176"; // Replace with actual number
+            const message = "Hello, I have made payment for ICMATT 2026 conference registration. Here is my payment proof:";
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
         }
 
         // Countdown Timer
@@ -1610,7 +2443,70 @@
             });
         }
 
+        // Auto-show modal when scrolling
+        let modalShown = false;
+        
+        function checkScrollForModal() {
+            const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Show modal when user has scrolled 40% down the page and it hasn't been shown yet
+            if (!modalShown && scrollPosition > (documentHeight * 0.4)) {
+                openModal();
+                modalShown = true;
+                // Remove the scroll event listener after modal is shown
+                window.removeEventListener('scroll', checkScrollForModal);
+            }
+        }
+
+        // Scroll navigation functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        const scrollToBottomBtn = document.getElementById('scrollToBottom');
+
+        // Function to check scroll position and toggle button visibility
+        function toggleScrollButtons() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Show/hide top button
+            if (scrollTop > 300) {
+                scrollToTopBtn.classList.add('active');
+            } else {
+                scrollToTopBtn.classList.remove('active');
+            }
+            
+            // Show/hide bottom button
+            if (scrollTop + windowHeight < documentHeight - 100) {
+                scrollToBottomBtn.classList.add('active');
+            } else {
+                scrollToBottomBtn.classList.remove('active');
+            }
+        }
+
+        // Scroll to top function
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll to bottom function
+        scrollToBottomBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: document.documentElement.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        // Initial check and event listener for scroll
+        toggleScrollButtons();
+        window.addEventListener('scroll', toggleScrollButtons);
+
         window.addEventListener('scroll', reveal);
+        window.addEventListener('scroll', checkScrollForModal);
         reveal();
 
         // Smooth Scroll
