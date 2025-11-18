@@ -285,9 +285,8 @@ nav {
     text-align: center;
     padding: 120px 5% 80px;
     position: relative;
-    /* background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 26, 51, 0.9)),  */
     background: linear-gradient(rgba(35, 43, 50, 0.85), rgba(35, 42, 49, 0.9)), 
-                url('images/hydro.jpg') center/cover;
+                url('IMAGES/hydro.jpg') center/cover;
     margin-bottom: -5em;
 }
 
@@ -465,6 +464,33 @@ nav {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* Page Hero Sections */
+.page-hero {
+    min-height: 40vh;
+    background: linear-gradient(rgba(0, 51, 102, 0.9), rgba(0, 26, 51, 0.95)), 
+                url('https://images.unsplash.com/photo-1566276681875-e671f304ac28?q=80&w=2000') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.page-hero-content {
+    text-align: center;
+    color: white;
+}
+
+.page-hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.page-hero-content p {
+    font-size: 1.5rem;
+    color: var(--gold);
 }
 
 /* Program Preview Cards */
@@ -791,6 +817,7 @@ nav {
 .payment-label {
     font-weight: 600;
     font-size: 1.1rem;
+    color: white;
 }
 
 .payment-value {
@@ -801,6 +828,13 @@ nav {
 
 .payment-text {
     font-size: 1.1rem;
+    color: white;
+}
+
+.email-text {
+    word-break: break-all;
+    overflow-wrap: break-word;
+    max-width: 200px;
 }
 
 .copy-btn {
@@ -1245,6 +1279,10 @@ footer::before {
     color: var(--gold);
 }
 
+.session-break p {
+    color: white;
+}
+
 .session-special {
     background: linear-gradient(135deg, var(--dark), var(--primary));
     color: white;
@@ -1258,12 +1296,102 @@ footer::before {
     color: var(--gold);
 }
 
+.session-special p {
+    color: white;
+}
+
 .session-special ul {
     color: white;
 }
 
 .session-accent {
     border-left-color: var(--accent);
+}
+
+.session-accent p {
+    color: #666;
+}
+
+/* Keynote Speaker Styles */
+.keynote-speaker {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+}
+
+.speaker-image {
+    flex-shrink: 0;
+}
+
+.speaker-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+}
+
+.speaker-profile h4 {
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.speaker-profile p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+/* Speaker List Styles */
+.speaker-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.speaker-item {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border-left: 4px solid var(--gold);
+}
+
+.speaker-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.speaker-img {
+    flex-shrink: 0;
+}
+
+.speaker-img img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--gold);
+}
+
+.speaker-info h4 {
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+    font-size: 1.2rem;
+}
+
+.speaker-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+.speaker-item p {
+    color: white;
 }
 
 /* Responsive */
@@ -1342,6 +1470,49 @@ footer::before {
     .session-time {
         min-width: auto;
     }
+    
+    .keynote-speaker {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .speaker-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    /* Mobile-specific fixes for page hero sections */
+    .page-hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .page-hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .program-day-card {
+        padding: 2rem;
+    }
+    
+    .session-item {
+        padding: 1.5rem;
+    }
+    
+    .session-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Fix text overflow on mobile */
+    .payment-text, .email-text {
+        font-size: 0.9rem;
+        word-break: break-all;
+        overflow-wrap: break-word;
+        max-width: 180px;
+    }
+    
+    .payment-label {
+        font-size: 1rem;
+    }
 
     .footer-grid {
         grid-template-columns: 1fr;
@@ -1368,8 +1539,37 @@ footer::before {
     .section-alt { padding: 80px 5%; }
     .section-title { font-size: 1.8rem; }
     .program-card, .theme-card, .hotel-card, .fee-card { padding: 2rem; }
-    .program-day-card { padding: 2rem; }
-    .session-item { padding: 1.5rem; }
+    
+    /* Extra small screen fixes */
+    .page-hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .page-hero-content p {
+        font-size: 1rem;
+    }
+    
+    .program-day-card {
+        padding: 1.5rem;
+    }
+    
+    .session-item {
+        padding: 1rem;
+    }
+    
+    .session-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    /* Fix text overflow on very small screens */
+    .payment-text, .email-text {
+        font-size: 0.8rem;
+        max-width: 150px;
+    }
+    
+    .payment-label {
+        font-size: 0.9rem;
+    }
     
     .footer {
         padding: 3rem 5% 1.5rem;
