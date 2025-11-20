@@ -286,7 +286,7 @@ nav {
     padding: 120px 5% 80px;
     position: relative;
     background: linear-gradient(rgba(35, 43, 50, 0.85), rgba(35, 42, 49, 0.9)), 
-                url('IMAGES/hydro.jpg') center/cover;
+                url('images/hydro.jpg') center/cover;
     margin-bottom: -5em;
 }
 
